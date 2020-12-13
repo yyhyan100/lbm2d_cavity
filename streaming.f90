@@ -5,49 +5,49 @@ subroutine streaming
 ! direction -> x+	
 	do i=ied,2,-1
 	do j=2,jed-1
-		f(i,j,1)=f(i-1,j,1)
+		f(1,i,j)=f(1,i-1,j)
 	enddo
 	enddo
 ! direction -> y+
 	do i=2,ied-1
 	do j=jed,2,-1
-		f(i,j,2)=f(i,j-1,2)
+		f(2,i,j)=f(2,i,j-1)
 	enddo
 	enddo
 ! direction -> x-
 	do i=1,ied-1
 	do j=2,jed-1
-		f(i,j,3)=f(i+1,j,3)
+		f(3,i,j)=f(3,i+1,j)
 	enddo
 	enddo
 ! direction -> y-
 	do i=2,ied-1
 	do j=1,jed-1
-		f(i,j,4)=f(i,j+1,4)
+		f(4,i,j)=f(4,i,j+1)
 	enddo
 	enddo
 ! direction -> x+,y+
 	do i=ied,2,-1
 	do j=jed,2,-1
-		f(i,j,5)=f(i-1,j-1,5)
+		f(5,i,j)=f(5,i-1,j-1)
 	enddo
 	enddo
 ! direction -> x-,y+
 	do i=1,ied-1
 	do j=jed,2,-1
-		f(i,j,6)=f(i+1,j-1,6)
+		f(6,i,j)=f(6,i+1,j-1)
 	enddo
 	enddo
 ! direction -> x-,y-
 	do i=1,ied-1
 	do j=1,jed-1
-		f(i,j,7)=f(i+1,j+1,7)
+		f(7,i,j)=f(7,i+1,j+1)
 	enddo
 	enddo
 ! direction -> x+,y-
 	do i=ied,2,-1
 	do j=1,jed-1
-		f(i,j,8)=f(i-1,j+1,8)
+		f(8,i,j)=f(8,i-1,j+1)
 	enddo
 	enddo
 end subroutine

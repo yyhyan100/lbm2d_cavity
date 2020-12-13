@@ -14,7 +14,7 @@ subroutine non_eq_extra
 		call getFeqAt(i,j,rho(i,j+1),u(i,j),v(i,j))
 		g2(:)=g(:)
 		call getFeqAt(i,j,rho(i,j+1),u(i,j+1),v(i,j+1))
-		f(i,j,:)=g2(:)+f(i,j+1,:)-g(:)
+		f(:,i,j)=g2(:)+f(:,i,j+1)-g(:)
 	enddo
 ! upper	
 	j=jed
@@ -22,7 +22,7 @@ subroutine non_eq_extra
 		call getFeqAt(i,j,rho(i,j-1),u(i,j),v(i,j))
 		g2(:)=g(:)
 		call getFeqAt(i,j,rho(i,j-1),u(i,j-1),v(i,j-1))
-		f(i,j,:)=g2(:)+f(i,j-1,:)-g(:)
+		f(:,i,j)=g2(:)+f(:,i,j-1)-g(:)
 	enddo
 ! left	
 	i=1
@@ -30,7 +30,7 @@ subroutine non_eq_extra
 		call getFeqAt(i,j,rho(i+1,j),u(i,j),v(i,j))
 		g2(:)=g(:)
 		call getFeqAt(i,j,rho(i+1,j),u(i+1,j),v(i+1,j))
-		f(i,j,:)=g2(:)+f(i+1,j,:)-g(:)
+		f(:,i,j)=g2(:)+f(:,i+1,j)-g(:)
 	enddo
 ! right
 	i=ied
@@ -38,14 +38,14 @@ subroutine non_eq_extra
 		call getFeqAt(i,j,rho(i-1,j),u(i,j),v(i,j))
 		g2(:)=g(:)
 		call getFeqAt(i,j,rho(i-1,j),u(i-1,j),v(i-1,j))
-		f(i,j,:)=g2(:)+f(i-1,j,:)-g(:)
+		f(:,i,j)=g2(:)+f(:,i-1,j)-g(:)
 	enddo
 	
 ! corner points, bounce back -- test
 	i=1;j=1
-	f(i,j,5)=f(i+1,j+1,7)
+	f(5,i,j)=f(7,i+1,j+1)
 	i=ied;j=1
-	f(i,j,6)=f(i-1,j+1,8)
+	f(6,i,j)=f(8,i-1,j+1)
 	
 end subroutine
 !----------------------------------------------------------------------------
@@ -55,36 +55,36 @@ subroutine bouncebk
 ! lower	
 	j=1
 	do i=2,ied-1
-		f(i,j,2)=f(i,j,4)
-		f(i,j,5)=f(i,j,7)
-		f(i,j,6)=f(i,j,8)
+		f(2,i,j)=f(4,i,j)
+		f(5,i,j)=f(7,i,j)
+		f(6,i,j)=f(8,i,j)
 	enddo
 ! upper	
 !	j=jed
 !	do i=2,ied-1
-!		f(i,j,4)=f(i,j,2)
-!		f(i,j,7)=f(i,j,5)
-!		f(i,j,8)=f(i,j,6)
+!		f(4,i,j)=f(2,i,j)
+!		f(7,i,j)=f(5,i,j)
+!		f(8,i,j)=f(6,i,j)
 !	enddo
 ! left	
 	i=1
 	do j=2,jed-1
-		f(i,j,1)=f(i,j,3)
-		f(i,j,5)=f(i,j,7)
-		f(i,j,8)=f(i,j,6)
+		f(1,i,j)=f(3,i,j)
+		f(5,i,j)=f(7,i,j)
+		f(8,i,j)=f(6,i,j)
 	enddo
 ! right
 	i=ied
 	do j=2,jed-1
-		f(i,j,3)=f(i,j,1)
-		f(i,j,6)=f(i,j,8)
-		f(i,j,7)=f(i,j,5)
+		f(3,i,j)=f(1,i,j)
+		f(6,i,j)=f(8,i,j)
+		f(7,i,j)=f(5,i,j)
 	enddo
 	
 ! corner points, bounce back -- test
 	i=1;j=1
-	f(i,j,5)=f(i+1,j+1,7)
+	f(5,i,j)=f(7,i+1,j+1)
 	i=ied;j=1
-	f(i,j,6)=f(i-1,j+1,8)
+	f(6,i,j)=f(8,i-1,j+1)
 	
 end subroutine

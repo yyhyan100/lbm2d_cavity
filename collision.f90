@@ -4,7 +4,7 @@ subroutine collision
 	do i=2,ied-1
 	do j=2,jed-1
 	do k=0,Q
-		f(i,j,k)=(1.0-omg)*f(i,j,k)+omg*feq(i,j,k)
+		f(k,i,j)=(1.0-omg)*f(k,i,j)+omg*feq(k,i,j)
 	enddo
 	enddo
 	enddo

@@ -28,9 +28,9 @@ do j=2,jed-1
 	u(i,j)=0.0
 	v(i,j)=0.0
 	do k=0,Q
-		rho(i,j)=rho(i,j)+f(i,j,k)
-		u(i,j)=u(i,j)+ei(k,1)*f(i,j,k)
-		v(i,j)=v(i,j)+ei(k,2)*f(i,j,k)
+		rho(i,j)=rho(i,j)+f(k,i,j)
+		u(i,j)=u(i,j)+ei(k,1)*f(k,i,j)
+		v(i,j)=v(i,j)+ei(k,2)*f(k,i,j)
 	enddo
 	u(i,j)=u(i,j)/rho(i,j)
 	v(i,j)=v(i,j)/rho(i,j)

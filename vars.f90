@@ -11,8 +11,8 @@ real omg
 contains
 
 subroutine allocateField()
-	allocate(f(ied,jed,0:Q))
-	allocate(feq(ied,jed,0:Q))
+	allocate(f(0:Q,ied,jed))
+	allocate(feq(0:Q,ied,jed))
 	allocate(u(ied,jed))
 	allocate(v(ied,jed))
 	allocate(rho(ied,jed))
