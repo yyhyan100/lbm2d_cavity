@@ -5,11 +5,11 @@ call init()
 tt=0.0
 kstep=1
 do while (tt<=t_end)
-	call getFeq()
-	call collision()
 	call streaming()
 	call bc()
 	call getMacro()	
+	call getFeq()
+	call collision()
 	call output(kstep)
 	kstep=kstep+1
 	tt=tt+dt
