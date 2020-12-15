@@ -2,8 +2,8 @@ subroutine getFeq()
 use vars
 integer i,j,k
 real uv,eu
-do i=2,ied-1
-do j=2,jed-1
+do i=1,ied
+do j=1,jed
 	uv=u(i,j)**2+v(i,j)**2
 	do k=0,Q
 		eu=ei(k,1)*u(i,j)+ei(k,2)*v(i,j)

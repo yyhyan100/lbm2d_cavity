@@ -4,24 +4,24 @@ subroutine streaming
 	
 ! direction -> x+	
 	do i=ied,2,-1
-	do j=2,jed-1
+	do j=1,jed
 		f(1,i,j)=f(1,i-1,j)
 	enddo
 	enddo
 ! direction -> y+
-	do i=2,ied-1
+	do i=1,ied
 	do j=jed,2,-1
 		f(2,i,j)=f(2,i,j-1)
 	enddo
 	enddo
 ! direction -> x-
 	do i=1,ied-1
-	do j=2,jed-1
+	do j=1,jed
 		f(3,i,j)=f(3,i+1,j)
 	enddo
 	enddo
 ! direction -> y-
-	do i=2,ied-1
+	do i=1,ied
 	do j=1,jed-1
 		f(4,i,j)=f(4,i,j+1)
 	enddo

@@ -1,8 +1,19 @@
 subroutine bc()
 !call non_eq_extra()
 call bouncebk()
+call top()
 end subroutine
-
+!----------------------------------------------------------------------------
+subroutine top()  !Zou-He bc for moving lid
+use vars
+j=jed
+do i=2,ied-1
+	rho(i,j)=(f(0,i,j)+f(1,i,j)+f(3,i,j)+2*(f(2,i,j)+f(5,i,j)+f(6,i,j)))
+	f(4,i,j)=f(2,i,j)
+	f(7,i,j)=f(5,i,j)-rho(i,j)*u(i,j)/6
+	f(8,i,j)=f(6,i,j)+rho(i,j)*u(i,j)/6
+enddo
+end subroutine
 !----------------------------------------------------------------------------
 subroutine non_eq_extra 
 	use vars
@@ -54,7 +65,7 @@ subroutine bouncebk
 	integer i,j,k
 ! lower	
 	j=1
-	do i=2,ied-1
+	do i=1,ied
 		f(2,i,j)=f(4,i,j)
 		f(5,i,j)=f(7,i,j)
 		f(6,i,j)=f(8,i,j)
@@ -68,23 +79,23 @@ subroutine bouncebk
 !	enddo
 ! left	
 	i=1
-	do j=2,jed-1
+	do j=1,jed
 		f(1,i,j)=f(3,i,j)
 		f(5,i,j)=f(7,i,j)
 		f(8,i,j)=f(6,i,j)
 	enddo
 ! right
 	i=ied
-	do j=2,jed-1
+	do j=1,jed
 		f(3,i,j)=f(1,i,j)
 		f(6,i,j)=f(8,i,j)
 		f(7,i,j)=f(5,i,j)
 	enddo
 	
 ! corner points, bounce back -- test
-	i=1;j=1
-	f(5,i,j)=f(7,i+1,j+1)
-	i=ied;j=1
-	f(6,i,j)=f(8,i-1,j+1)
+!	i=1;j=1
+!	f(5,i,j)=f(7,i+1,j+1)
+!	i=ied;j=1
+!	f(6,i,j)=f(8,i-1,j+1)
 	
 end subroutine
