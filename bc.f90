@@ -7,11 +7,11 @@ end subroutine
 subroutine top()  !Zou-He bc for moving lid
 use vars
 j=jed
-do i=2,ied-1
+do i=1,ied
 	rho(i,j)=(f(0,i,j)+f(1,i,j)+f(3,i,j)+2*(f(2,i,j)+f(5,i,j)+f(6,i,j)))
 	f(4,i,j)=f(2,i,j)
-	f(7,i,j)=f(5,i,j)-rho(i,j)*u(i,j)/6
-	f(8,i,j)=f(6,i,j)+rho(i,j)*u(i,j)/6
+	f(7,i,j)=f(5,i,j)+0.5*(f(1,i,j)-f(3,i,j))-rho(i,j)*u(i,j)/6
+	f(8,i,j)=f(6,i,j)-0.5*(f(1,i,j)-f(3,i,j))+rho(i,j)*u(i,j)/6
 enddo
 end subroutine
 !----------------------------------------------------------------------------
@@ -79,14 +79,14 @@ subroutine bouncebk
 !	enddo
 ! left	
 	i=1
-	do j=1,jed
+	do j=1,jed-1
 		f(1,i,j)=f(3,i,j)
 		f(5,i,j)=f(7,i,j)
 		f(8,i,j)=f(6,i,j)
 	enddo
 ! right
 	i=ied
-	do j=1,jed
+	do j=1,jed-1
 		f(3,i,j)=f(1,i,j)
 		f(6,i,j)=f(8,i,j)
 		f(7,i,j)=f(5,i,j)

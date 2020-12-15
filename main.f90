@@ -36,9 +36,4 @@ do j=1,jed-1
 	v(i,j)=v(i,j)/rho(i,j)
 enddo
 enddo
-j=jed
-do i=2,ied-1
-	rho(i,j)=f(0,i,j)+f(1,i,j)+f(3,i,j)+2*(f(2,i,j)+f(6,i,j)+f(5,i,j))
-enddo
-
 end subroutine
