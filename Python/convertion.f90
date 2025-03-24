@@ -1,8 +1,8 @@
-subroutine get_feq(ei,u,v,rho,feq,Q,nx,ny)
+subroutine get_feq(ei,wi,u,v,rho,feq,Q,nx,ny)
 integer i,j,k,Q,nx,ny
-real ei(Q,2), u(nx,ny), v(nx,ny), rho(nx,ny), feq(Q,nx,ny)
+real ei(Q,2),wi(Q), u(nx,ny), v(nx,ny), rho(nx,ny), feq(Q,nx,ny)
 real uv,eu
-!f2py intent (in) ei,u,v 
+!f2py intent (in) ei,wi, u,v 
 !f2py intent (in,out,overwrite) feq
 do i=1,nx
 do j=1,ny
